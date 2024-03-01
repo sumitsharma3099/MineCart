@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   # Default root path for non-logged-in users
-  unauthenticated do
-    root 'welcome#index'
-  end
+
 
   # Root path for logged-in non-admin users
   authenticated :user do
@@ -25,7 +23,9 @@ Rails.application.routes.draw do
   get '/add_product_to_cart/:id', to: 'carts#add_product', as: 'add_product_to_cart'
   get '/place_order', to: 'carts#place_order', as: 'place_order'
   resources :carts, only: [:index, :destroy]
-
+  unauthenticated do
+    root 'welcome#index'
+  end
   # Route for handling unmatched paths
   match '*unmatched', to: 'application#not_found_method', via: :all
 end

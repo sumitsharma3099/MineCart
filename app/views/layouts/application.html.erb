@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Page Title -->
+  <title>MineCart</title>
+
+  <!-- Meta Tags for Responsive Design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSRF Meta Tags -->
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Tailwind CSS Styles -->
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+  <!-- Application Styles -->
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  <!-- JavaScript Import Maps -->
+  <%= javascript_importmap_tags %>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+
+<body class="bg-green-50">
+  <!-- Navigation Bar -->
+  <nav class="bg-white p-4 text-black">
+    <div class="container mx-auto flex justify-between items-center">
+      <!-- Logo and Brand Name -->
+      <a href="/" class="flex justify-between items-center text-black">
+        <%= image_tag('logo.png', class: 'h-10 mx-2', alt: 'Logo') %>
+        MineCart
+      </a>
+
+      <!-- User Actions (e.g., Cart and Logout) -->
+      <% if user_signed_in? %>
+        <div class="flex items-center">
+          <!-- Cart Icon -->
+          <%= link_to carts_path, class: 'relative bg-amber-100 text-black p-2 rounded-lg mx-2' do %>
+            🛒 <!-- Shopping Cart Icon -->
+            <% if current_user.pending_cart_items.present? %>
+              <span class="absolute top-0 right-0 bg-blue-500 text-white rounded-full px-2 py-1 text-xs font-bold">
+                <%= current_user.pending_cart_items.sum(&:qty) %>
+              </span>
+            <% end %>
+          <% end %>
+
+          <!-- Logout Link -->
+          <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete }, class: 'bg-amber-100 text-black p-2 rounded-lg' %>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+
+  <!-- Flash Messages Section -->
+  <% flash.each do |type, message| %>
+    <div class="<%= flash_class(type) %> bg-opacity-80 text-white p-4 mb-4 rounded shadow">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <!-- Main Content -->
+  <%= yield %>
+</body>
+
+</html>

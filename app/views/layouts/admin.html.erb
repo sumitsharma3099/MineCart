@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-500 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- Image Logo -->
+        <a href="/" class="flex justify-between items-center">
+          <%= image_tag('logo.png', class: 'h-10 mx-2') %>
+          MineCart
+        </a>
+
+        <!-- Logout Button for Admin -->
+        <% if admin_signed_in? %>
+          <%= link_to 'Logout', destroy_admin_session_path, data: { turbo_method: :delete }, class: 'bg-amber-100 text-black p-2 rounded-lg' %>
+        <% end %>
+      </div>
+    </nav>
+
+    <!-- Main Content Layout -->
+    <div class="flex h-screen bg-gray-100">
+      <!-- Side Navigation -->
+      <aside class="w-1/5 bg-amber-100 p-4">
+        <!-- Sidenav Content -->
+        <ul>
+          <!-- Dashboard Link -->
+          <li class="p-3">
+            <%= link_to 'Dashboard', admin_root_path, class: 'text-black' %>
+          </li>
+          <hr>
+
+          <!-- Manage Products Link -->
+          <li class="p-3">
+            <%= link_to 'Manage Products', admin_products_path, class: 'text-black' %>
+          </li>
+          <hr>
+
+          <!-- Vendors Link -->
+          <li class="p-3">
+            <%= link_to 'Vendors', admin_vendors_path, class: 'text-black' %>
+          </li>
+          <hr>
+        </ul>
+      </aside>
+
+      <!-- Main Content Section -->
+      <main class="flex-1 p-4">
+        <!-- Display Flash Messages -->
+        <% flash.each do |type, message| %>
+          <div class="<%= flash_class(type) %> bg-opacity-80 text-white p-4 mb-4 rounded shadow">
+            <%= message %>
+          </div>
+        <% end %>
+
+        <!-- Yield Main Content -->
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>

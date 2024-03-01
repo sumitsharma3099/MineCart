@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /* app/assets/stylesheets/application.css (or .scss) */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination a, .pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    color: #4a5568;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination a:hover {
+    background-color: #cbd5e0;
+  }
+  
+  .pagination .page.current {
+    background-color: #4299e1;
+    color: #fff;
+    border: 1px solid #4299e1;
+  }
+  
+  .pagination .page.gap {
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .pagination .prev, .pagination .next {
+    margin: 0 2px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    color: #4a5568;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination .prev:hover, .pagination .next:hover {
+    background-color: #cbd5e0;
+  }
+  
+  .pagination .current {
+    margin: 0 2px;
+    border: 1px solid #1f1f20;
+    background-color: #0c0c0c;
+    color: #f0f4fa;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }

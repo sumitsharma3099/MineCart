@@ -23,10 +23,10 @@
       <!-- Loop through each product and display its information -->
       <% @products.each do |product| %>
         <tr>
-          <td class="py-2 px-4 border-b text-black"><%= product.name %></td>
-          <td class="py-2 px-4 border-b"><%= product.description %></td>
-          <td class="py-2 px-4 border-b"><%= product.image_url %></td>
-          <td class="py-2 px-4 border-b"><%= product&.vendor&.name %></td>
+          <td class="py-2 px-4 border-b text-black"><%= product.name.truncate(10, omission: '...') %></td>
+          <td class="py-2 px-4 border-b"><%= product.description.truncate(15, omission: '...') %></td>
+          <td class="py-2 px-4 border-b"><%= product.image_url.truncate(15, omission: '...') %></td>
+          <td class="py-2 px-4 border-b"><%= product&.vendor&.name.truncate(15, omission: '...') %></td>
           <td class="py-2 px-4 border-b"><%= number_to_currency(product.price) %></td>
           <td class="py-2 px-4 border-b"><%= product.qty %></td>
           <!-- Actions for each product -->

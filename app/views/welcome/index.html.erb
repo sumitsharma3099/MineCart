@@ -1,0 +1,17 @@
+<!-- app/views/welcome/index.html.erb -->
+
+<div class="flex items-center justify-center mt-10">
+  <div class="container mx-auto text-center">
+    <h1 class="text-3xl font-semibold mb-4">Welcome to MineCart!</h1>
+    <p class="text-lg text-gray-600">Your go-to place for all your shopping needs.</p>
+    <hr>
+    <br>
+    <% if current_user.nil? %>
+    <%= link_to "Login as User", new_user_session_path, class: 'bg-amber-100 text-black p-2 rounded-lg m-3' %>
+    <% end %>
+    <% if current_user.present? %>
+    <%= link_to "Go to Store", user_root_path, class: 'bg-amber-100 text-black p-2 rounded-lg m-3' %>
+    <% end %>
+    <!-- Add any other content you'd like on the welcome page -->
+  </div>
+</div>
